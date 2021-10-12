@@ -1,0 +1,44 @@
+model_name: "dimenet++"
+
+emb_size: 128
+out_emb_size: 256
+int_emb_size: 64
+basis_emb_size: 8
+num_blocks: 4
+
+num_spherical: 7
+num_radial: 6
+output_init: 'GlorotOrthogonal'  # 'zeros' for mu, homo, lumo, and zpve; 'GlorotOrthogonal' for alpha, R2, U0, U, H, G, and Cv
+
+extensive: False
+cutoff: 5.0
+envelope_exponent: 5
+
+num_before_skip: 1
+num_after_skip: 2
+num_dense_output: 3
+
+ratio_train: 0.8
+ratio_valid: 0.1
+data_seed: 42
+dataset: "data/Heat_of_formation.npz"
+logdir: "."
+
+num_steps: 30000 #15000 #30000 #3000000
+ema_decay: 0.999
+
+learning_rate: 0.001
+warmup_steps: 300 #3000
+decay_rate: 0.01
+decay_steps: 40000 #4000000
+
+batch_size: 32
+evaluation_interval: 500 #10000
+save_interval: 1000 #10000
+restart: None
+comment: "final"
+target: 'Heat_of_formation'  
+#['Stable','Heat_of_formation','Work_function','Exfoliation_energy','Exfoliation_energy_jarvis','Vmax','Vmin']
+#['Thermodynamic_stability_level','Phonon_dynamic_stability','Stiffness_dynamic_stability','Work_function','Vmax','Vmin','Vmin_class','Vmax_class','Exfoliation_energy','Exfoliation_energy_jarvis','Stable','Meta_stable','Dynamical_stable', 'Heat_of_formation']
+
+data_aug: True
